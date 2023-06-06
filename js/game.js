@@ -6,22 +6,23 @@
 // Created on: 05/30/2023
 // This is the Phaser3 configuration file
 
-// Importing SplashScene class from ./splashScene.js
+// Importing default exports from scene files
 import SplashScene from "./splashScene.js"
-
-// Import SplashScene class from ./titleScene.js
 import TitleScene from "./titleScene.js"
+import MenuScene from "./menuScene.js"
 
 // Creating objects of scenes for managing different scenes in the program
 const splashScene = new SplashScene()
 const titleScene = new TitleScene()
+const menuScene = new MenuScene()
 
-// Creating a constant to detail the basic game scene
+
+// Creating a constant for the basic game scene
 const  config = {
   // Type of game
   type: Phaser.AUTO,
 
-  // Size of the screen
+  // Adjusting size of the screen
   width: 1920,
   height: 1080,
 
@@ -48,9 +49,15 @@ const  config = {
 // Creating a new Phaser game with config details
 const game = new Phaser.Game(config)
 
-// Loading the game scenes
+// Loading the splashScenes
 game.scene.add("splashScene", splashScene)
+
+// Loading the titleScenes
 game.scene.add("titleScene", titleScene)
+
+// Loading the menuScenes
+game.scene.add("menuScene", menuScene)
+
 
 
 // Starting the splash scene

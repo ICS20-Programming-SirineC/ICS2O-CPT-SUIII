@@ -18,14 +18,14 @@ class SplashScene extends Phaser.Scene {
 
   init (data) {
     // Initializing splash scene background colour
-    this.cameras.main.setBackgroundColor("#F16C6A")
+    this.cameras.main.setBackgroundColor("#CDC1C1")
   }
 
   preload () {
-    // Places Splash Scene in the console to let programmer know the scene is being displayed
+    // Adding the Splash Scene in the console to let programmer know the scene is being displayed
     console.log("Splash Scene")
 
-    // Giving Phaser the chosen image for the splash scene
+    // Giving Phaser the splash scene image folder and file
     this.load.image("splashSceneBackground", "./images/splashSceneImage.png")
   }
 
@@ -37,15 +37,15 @@ class SplashScene extends Phaser.Scene {
     this.splashSceneBackgroundImage.x = 1920 / 2
     this.splashSceneBackgroundImage.y = 1080 / 2
 
-    // Adding some custom text to introduce the game 
+    // Adding text to introduce the game 
     const text = this.add.text(
       this.cameras.main.width / 2,
       this.cameras.main.height / 4.5,
       "A GAME BY SIRINE CHERKAOUI",
       {
-        fontFamily: "Times New Roman",
+        fontFamily: "Monospace",
         fontSize: "100px",
-        color: "#2980B9",
+        color: "#9B2121",
         fontStyle: "Bold",
         strokeThickness: 5,
       }
@@ -54,8 +54,8 @@ class SplashScene extends Phaser.Scene {
   }
 
   update (time, delta) {
-    // Setting the amount of time during which this scene is shown (6 seconds)
-    if (time > 6000) {
+    // Setting the amount of time during which this scene is shown (4 seconds)
+    if (time > 4000) {
       
       // Moving on to the title scene
       this.scene.switch("titleScene")
