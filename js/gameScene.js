@@ -8,26 +8,32 @@
 
 // The code written below adds to the code already in Phaser.Scene
 class GameScene extends Phaser.Scene {
-  constructor () {
-
-    // Using the "gameScene" key to create an object
-    super({ key: "gameScene"})
+  constructor() {
+    super({ key: "gameScene" });
+    this.background = null;
+    this.ronaldoPlayer = null;
   }
 
-  init (data) {
-    // Initializing game scene background colour
-    this.cameras.main.setBackgroundColor("#ffffff")
+  init(data) {
+    this.cameras.main.setBackgroundColor("#ffffff");
   }
 
-  preload () {
-    // Places game Scene in the console to let programmer know the scene is being displayed
-    console.log("Game Scene")
+  preload() {
+    console.log("Game Scene");
+    this.load.image('soccerBackground', './images/soccerBackground.jpg');
+    this.load.image('ronaldoPlayer', './images/ronaldoPlayer.png');
   }
 
-  create (data) {
+  create(data) {
+    this.background = this.add.image(0, 0, 'soccerBackground').setScale(3.0);
+    this.background.setOrigin(0, 0);
+
+    this.ronaldoPlayer = this.physics.add.sprite(1920 / 2, 1080 - 100, 'ronaldoPlayer')
   }
 
-  update (time, delta) {
+  update(time, delta) {
+    //called 60 times a second
+    
   }
 }
 
