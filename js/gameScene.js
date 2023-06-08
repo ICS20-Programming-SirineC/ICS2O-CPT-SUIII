@@ -24,6 +24,8 @@ class GameScene extends Phaser.Scene {
     this.load.image('soccerBackground', './images/soccerBackground.jpg');
     this.load.image('ronaldoPlayer', './images/ronaldoPlayer.png');
     this.load.image('missile', './images/missile.png');
+    //sound
+    this.load.audio('suiii', './sounds/suiii.mp3')
   }
 
   create(data) {
@@ -82,12 +84,20 @@ class GameScene extends Phaser.Scene {
          this.soccerMissile = true
          const aNewMissile = this.physics.add.sprite(this.ronaldoPlayer.x, this.ronaldoPlayer.y, 'missile')
          this.missileGroup.add(aNewMissile)
+         this.sound.play('suiii')
       }
     }
 
     if (keySpaceObj.isUp === true) {
       this.soccerMissile = false
     }
+
+    this.missileGroup.children.each(function (item) {
+      item.y = item.y - 15
+      if(item.y < 0) {
+        item.destroy()
+      }
+    })
   } 
 }
 
