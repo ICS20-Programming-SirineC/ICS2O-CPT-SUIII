@@ -12,6 +12,7 @@ class GameScene extends Phaser.Scene {
     super({ key: "gameScene" });
     this.background = null;
     this.ronaldoPlayer = null;
+    this.soccerMissile = false
   }
 
   init(data) {
@@ -22,6 +23,7 @@ class GameScene extends Phaser.Scene {
     console.log("Game Scene");
     this.load.image('soccerBackground', './images/soccerBackground.jpg');
     this.load.image('ronaldoPlayer', './images/ronaldoPlayer.png');
+    this.load.image('missile', './images/missile.png');
   }
 
   create(data) {
@@ -29,6 +31,10 @@ class GameScene extends Phaser.Scene {
     this.background.setOrigin(0, 0);
 
     this.ronaldoPlayer = this.physics.add.sprite(1920 / 2, 1080 - 100, 'ronaldoPlayer');
+
+    // create a group for the missiles
+
+    this.missileGroup = this.physics.add.group ()
   }
 
   update(time, delta) {
@@ -38,6 +44,7 @@ class GameScene extends Phaser.Scene {
     const keyRightObj = this.input.keyboard.addKey('RIGHT');
     const keyUpObj = this.input.keyboard.addKey('UP');
     const keyDownObj = this.input.keyboard.addKey('DOWN');
+    const keySpaceObj = this.input.keyboard.addKey('SPACE');
 
     if (keyLeftObj.isDown === true) {
       this.ronaldoPlayer.x = this.ronaldoPlayer.x - 15;
@@ -68,7 +75,20 @@ class GameScene extends Phaser.Scene {
     } else if (this.ronaldoPlayer.y > 1080) {
       this.ronaldoPlayer.y = 0; // Set the player sprite position to the other side of the screen
     }
-  }
+
+    if (keySpaceObj.isDown === true) {
+      if (this.soccerMissile === false) {
+        //fire missile
+         this.soccerMissile = true
+         const aNewMissile = this.physics.add.sprite(this.ronaldoPlayer.x, this.ronaldoPlayer.y, 'missile')
+         this.missileGroup.add(aNewMissile)
+      }
+    }
+
+    if (keySpaceObj.isUp === true) {
+      this.soccerMissile = false
+    }
+  } 
 }
 
 // Exporting the menu scene as default
