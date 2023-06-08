@@ -28,14 +28,48 @@ class GameScene extends Phaser.Scene {
     this.background = this.add.image(0, 0, 'soccerBackground').setScale(3.0);
     this.background.setOrigin(0, 0);
 
-    this.ronaldoPlayer = this.physics.add.sprite(1920 / 2, 1080 - 100, 'ronaldoPlayer')
+    this.ronaldoPlayer = this.physics.add.sprite(1920 / 2, 1080 - 100, 'ronaldoPlayer');
   }
 
   update(time, delta) {
-    //called 60 times a second
-    
+    // called 60 times a second
+
+    const keyLeftObj = this.input.keyboard.addKey('LEFT');
+    const keyRightObj = this.input.keyboard.addKey('RIGHT');
+    const keyUpObj = this.input.keyboard.addKey('UP');
+    const keyDownObj = this.input.keyboard.addKey('DOWN');
+
+    if (keyLeftObj.isDown === true) {
+      this.ronaldoPlayer.x = this.ronaldoPlayer.x - 15;
+    }
+
+    if (keyRightObj.isDown === true) {
+      this.ronaldoPlayer.x = this.ronaldoPlayer.x + 15;
+    }
+
+    if (keyUpObj.isDown === true) {
+      this.ronaldoPlayer.y = this.ronaldoPlayer.y - 15;
+    }
+
+    if (keyDownObj.isDown === true) {
+      this.ronaldoPlayer.y = this.ronaldoPlayer.y + 15;
+    }
+
+    // Check if the player sprite surpasses the screen borders horizontally
+    if (this.ronaldoPlayer.x < 0) {
+      this.ronaldoPlayer.x = 1920; // Set the player sprite position to the other side of the screen
+    } else if (this.ronaldoPlayer.x > 1920) {
+      this.ronaldoPlayer.x = 0; // Set the player sprite position to the other side of the screen
+    }
+
+    // Check if the player sprite surpasses the screen borders vertically
+    if (this.ronaldoPlayer.y < 0) {
+      this.ronaldoPlayer.y = 1080; // Set the player sprite position to the other side of the screen
+    } else if (this.ronaldoPlayer.y > 1080) {
+      this.ronaldoPlayer.y = 0; // Set the player sprite position to the other side of the screen
+    }
   }
 }
 
 // Exporting the menu scene as default
-export default GameScene
+export default GameScene;

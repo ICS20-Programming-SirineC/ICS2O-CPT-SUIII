@@ -34,7 +34,13 @@ class TitleScene extends Phaser.Scene {
     this.titleSceneBackgroundImage.x = 1920 / 2;
     this.titleSceneBackgroundImage.y = 1080 / 2;
 
-    this.titeSceneText = this.add.text(1920 / 2, (1080 / 2) + 350, 'SUIII', this.titleSceneTextStyle);
+    this.titleSceneText = this.add.text(1920 / 2, (1080 / 2) + 350, 'SUIII', this.titleSceneTextStyle);
+    this.tweens.add({
+      targets: this.titleSceneText, 
+      alpha: { from: 0, to: 1 },
+      duration: 4000,
+});
+
   }
 
   update(time, delta) {
