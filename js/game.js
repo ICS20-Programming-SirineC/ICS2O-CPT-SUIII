@@ -11,12 +11,16 @@ import SplashScene from "./splashScene.js"
 import TitleScene from "./titleScene.js"
 import MenuScene from "./menuScene.js"
 import GameScene from "./gameScene.js"
+import InstructionsScene from "./instructionsScene.js"
+
 
 // Creating objects of scenes for managing different scenes in the program
 const splashScene = new SplashScene()
 const titleScene = new TitleScene()
 const menuScene = new MenuScene()
 const gameScene = new GameScene()
+const instructionsScene = new InstructionsScene()
+
 
 // Creating a constant for the basic game scene
 const  config = {
@@ -61,6 +65,9 @@ game.scene.add("menuScene", menuScene)
 
 // Loading the gameScenes
 game.scene.add("gameScene", gameScene)
+
+// Loading the instructionsScenes
+game.scene.add("instructionsScene", instructionsScene)
 
 // Starting the splash scene
 game.scene.start("splashScene")
